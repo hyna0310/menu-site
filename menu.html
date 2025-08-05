@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>소문난성수감자탕(주) 메뉴</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 20px;
+      color: #111;
+    }
+
+    h1 {
+      text-align: center;
+      color: #B22222;
+      font-size: 1.8em;
+    }
+
+    h2 {
+      color: #B22222;
+      margin-top: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+      font-size: 1.2em;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 1em;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .lang-select {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .lang-select button {
+      flex: 1 1 calc(50% - 10px);
+      padding: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      text-align: center;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+      border-radius: 4px;
+    }
+
+    .main-photo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .main-photo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .footer-logo {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer-logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 480px) {
+      .lang-select button {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-photo">
+      <img src="gamjatang.jpg" alt="감자탕 사진">
+    </div>
+
+    <h1 id="title">소문난성수감자탕(주)</h1>
+
+    <div class="lang-select">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('zh')">中文</button>
+      <button onclick="setLanguage('ja')">日本語</button>
+      <button onclick="setLanguage('ko')">한국어</button>
+    </div>
+
+    <div id="menu"></div>
+
+    <div class="footer-logo">
+      <img src="logo.png" alt="하단 로고">
+    </div>
+  </div>
+
+  <script>
+    const menus = {
+      ko: [
+        {
+          title: "감자탕 | 탕",
+          items: [["대 (4인분)", "49,000"], ["중 (3인분)", "37,000"], ["소 (2인분)", "32,000"]]
+        },
+        {
+          title: "감자국식사 | 뚝배기",
+          items: [["일반", "12,000"], ["우거지", "13,000"], ["곱배기", "13,000"], ["우거지곱배기", "14,000"]]
+        },
+        {
+          title: "탕추가",
+          items: [["뼈추가", "14,000"], ["우거지추가", "4,000"], ["수제비", "4,000"],  ["볶음밥", "4,000"], ["라면", "3,000"], ["공기밥", "2,000"]]
+        },
+        {
+          title: "주류/음료",
+          items: [["맥주", "6,000"], ["소주", "5,000"], ["막걸리", "5,000"], ["산사춘", "10,000"], ["백세주", "10,000"], ["산삼주", "7,000"], ["청하", "7,000"], ["콜라", "2,000"], ["사이다", "2,000"]]
+        }
+      ],
+      en: [
+        {
+          title: "Gamjatang(Pork Backbone Stew)",
+          items: [["Large - serves 4", "₩ 49,000"], ["Medium - serves 3", "₩ 37,000"], ["Small - serves 2", "₩ 32,000"]]
+        },
+        {
+          title: "Gamjatang(serves 1)",
+          items: [["Regular", "₩ 12,000"], ["Regular with Ugeoji", "₩ 13,000"], ["Large", "₩ 13,000"], ["Large with Ugeoji", "₩ 14,000"]]
+        },
+        {
+          title: "Add-ons",
+          items: [["Extra Pork Bones", "₩ 14,000"], ["Extra Ugeoji", "₩ 4,000"], ["Sujebi(Hand-cut noodles)", "₩ 4,000"],  ["Fried Rice", "₩ 4,000"], ["Ramen", "₩ 3,000"], ["Steamed Rice", "₩ 2,000"]]
+        },
+        {
+          title: "Drinks",
+          items: [["Beer", "₩ 6,000"], ["Soju", "₩ 5,000"], ["Makgeolli", "₩ 5,000"], ["Sansachun", "₩ 10,000"], ["Baekseju", "₩ 10,000"], ["Sansam-ju(Wild Ginseng Wine)", "₩ 7,000"], ["Cheongha", "₩ 7,000"], ["Cola", "₩ 2,000"], ["Sprite", "₩ 2,000"]]
+        }
+      ],
+      zh: [
+        {
+          title: "Gamjatang",
+          items: [["大 (四人份)", "₩ 49,000"], ["中 (三人份)", "₩ 37,000"], ["小 (两人份)", "₩ 32,000"]]
+        },
+        {
+          title: "Gamjatang (一人份)",
+          items: [["普通", "₩ 12,000"], ["普通 加白菜", "₩ 13,000"], ["大份", "₩ 13,000"], ["大份 加白菜", "₩14,000"]]
+        },
+        {
+          title: "加菜",
+          items: [["加骨头", "₩ 14,000"], ["加白菜", "₩ 4,000"], ["手工面", "₩ 4,000"], ["炒饭", "₩ 4,000"], ["拉面", "₩ 3,000"], ["白饭", "₩ 2,000"]]
+        },
+        {
+          title: "饮料",
+          items: [["啤酒", "₩ 6,000"], ["烧酒", "₩ 5,000"], ["米酒", "₩ 5,000"], ["山楂春", "₩ 10,000"], ["百岁酒", "₩ 10,000"], ["山参酒", "₩ 7,000"], ["清河", "₩ 7,000"], ["可乐", "₩ 2,000"], ["雪碧", "₩ 2,000"]]
+        }
+      ],
+      ja: [
+        {
+          title: "カムジャタン | 鍋",
+          items: [["大（４人前）", "₩ 49,000"], ["中（３人前）", "₩ 37,000"], ["小（２人前）", "₩ 32,000"]]
+        },
+        {
+          title: "カムジャタン | 一人前定食",
+          items: [["普通", "₩ 12,000"], ["普通(白菜入り)", "₩ 13,000"], ["大盛り", "₩ 13,000"], ["大盛り(白菜入り)", "₩ 14,000"]]
+        },
+        {
+          title: "追加メニュー",
+          items: [["骨追加", "₩ 14,000"], ["ウゴジ（白菜）追加", "₩ 4,000"], ["スジェビ", "₩ 4,000"],  ["チャーハン", "₩ 4,000"], ["ラーメン", "₩ 3,000"], ["ライス", "₩ 2,000"]]
+        },
+        {
+          title: "ドリンク",
+          items: [["ビール", "₩ 6,000"], ["焼酎", "₩ 5,000"], ["マッコリ", "₩ 5,000"], ["サンサチュン", "₩ 10,000"], ["百歳酒", "₩ 10,000"], ["山参酒", "₩ 7,000"], ["清河", "₩ 7,000"], ["コーラ", "₩ 2,000"] ,["サイダー", "₩ 2,000"]]
+        }
+      ]
+    };
+
+    function setLanguage(lang) {
+      const menuDiv = document.getElementById("menu");
+      const title = document.getElementById("title");
+      menuDiv.innerHTML = "";
+
+      switch(lang) {
+        case 'ko': title.textContent = "소문난성수감자탕(주)"; break;
+        case 'en': title.textContent = "Somunnan Seongsu Gamjatang"; break;
+        case 'zh': title.textContent = "Somunnan Seongsu Gamjatang"; break;
+        case 'ja': title.textContent = "ソムンナン聖水カムジャタン"; break;
+      }
+
+      menus[lang].forEach(section => {
+        const sectionTitle = document.createElement("h2");
+        sectionTitle.textContent = section.title;
+        menuDiv.appendChild(sectionTitle);
+
+        const ul = document.createElement("ul");
+        section.items.forEach(([name, price]) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${name}</span><span>${price}</span>`;
+          ul.appendChild(li);
+        });
+        menuDiv.appendChild(ul);
+      });
+    }
+
+    setLanguage("en");
+  </script>
+</body>
+</html>
